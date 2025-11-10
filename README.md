@@ -1,77 +1,102 @@
-# Penjaminan Mutu Sistem Informasi_SI_A_Kelompok 2
-**Judul Project:** Pemesanan Online Melalui QR Cafe  
+# Proyek Sistem Informasi Cyber Cafe
 
-**Tim Pengembang:**
-1. **Project Manager:** Lila Vimala_F521230801  
-2. **Database Administrator:** Nur Khalizah_F521230820  
-3. **UI/UX Designer:** Cahya Nabila Mannassai_F521230823  
-4. **Fullstack Developer:** Syahril Ramadhan_F521230838  
-5. **Quality Assurance:** Desak Damayanti_F521230804  
+Ini adalah aplikasi web full-stack yang dibangun menggunakan Laravel (PHP) untuk mengelola operasional Cyber Cafe. Aplikasi ini mencakup sistem pemesanan pelanggan (frontend) dan panel admin (backend) untuk manajemen.
 
----
+## 🚀 Cara Menjalankan Proyek (How to Run)
 
-## 📘 Deskripsi Aplikasi
-Aplikasi **Pemesanan Online Melalui QR Cafe** merupakan sistem berbasis web yang memudahkan pelanggan untuk melakukan pemesanan makanan dan minuman secara digital melalui pemindaian QR Code di meja masing-masing.  
+Berikut adalah panduan langkah demi langkah untuk menginstal dan menjalankan proyek Cyber Cafe ini di lingkungan pengembangan lokal Anda.
 
-Sistem ini dirancang untuk meningkatkan efisiensi pelayanan di kafe dengan fitur seperti:
-- Pemindaian QR untuk melihat menu
-- Pemesanan langsung dari perangkat pelanggan
-- Pengelolaan menu dan transaksi oleh admin
+### 1. Prasyarat
+
+Pastikan komputer Anda telah terinstal perangkat lunak berikut:
+* **XAMPP** (sebagai server Apache dan database MySQL/MariaDB)
+* **Composer** (untuk manajemen dependensi PHP)
+* **Git** (untuk meng-kloning repository)
 
 ---
 
-## ⚙️ Install / How to Run
+### 2. Instalasi Proyek
 
-### 1. Clone Repository
-```bash
-git clone https://github.com/livinee/Penjaminan-Mutu-Sistem-Informasi_SI_A_Kelompok-2.git
-cd Penjaminan-Mutu-Sistem-Informasi_SI_A_Kelompok-2
-composer install
-cp .env.example .env
-```
+1.  **Nyalakan XAMPP**
+    Buka XAMPP Control Panel dan nyalakan modul **Apache** dan **MySQL**.
 
-### 2. Konfigurasi Database
-Buka file **.env** lalu ubah sesuai dengan database yang kamu gunakan:
-```bash
-DB_PORT=3306
-DB_DATABASE=laravel
-DB_USERNAME=root
-DB_PASSWORD=
-```
+2.  **Kloning Repository**
+    Buka terminal (Git Bash, CMD, atau PowerShell), masuk ke folder `htdocs` XAMPP Anda, dan kloning proyek ini:
+    ```bash
+    cd C:\xampp\htdocs
+    git clone [https://github.com/livlinee/Penjaminan-Mutu-Sistem-Informasi_-SI_A_Kelompok-2.git](https://github.com/livlinee/Penjaminan-Mutu-Sistem-Informasi_-SI_A_Kelompok-2.git) Cyber_Cafe_new
+    cd Cyber_Cafe_new
+    ```
 
-### 3. Instalasi Website
-```bash
-php artisan key:generate
-php artisan migrate --seed
-```
+3.  **Instal Dependensi**
+    Instal semua *package* PHP (seperti Laravel, Laravel Excel) menggunakan Composer:
+    ```bash
+    composer install
+    ```
 
-### 4. Jalankan Website
-```bash
-php artisan serve
-```
+4.  **Siapkan File `.env`**
+    Salin file `.env.example` menjadi `.env` baru, lalu buat kunci aplikasi:
+    ```bash
+    copy .env.example .env
+    php artisan key:generate
+    ```
 
-Setelah server berjalan, buka browser dan akses:
-```
-http://localhost:8000
-```
+5.  **Buat Database Kosong**
+    * Buka browser dan pergi ke **`http://localhost/phpmyadmin`**.
+    * Buat database baru dengan nama persis: **`cyber_cafe`**
+
+6.  **Konfigurasi `.env`**
+    Buka file `.env` yang baru Anda buat dan pastikan pengaturan database Anda sudah benar. (Pengaturan *default* XAMPP biasanya sudah benar).
+
+    **Database:**
+    ```env
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=cyber_cafe
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
+
+    **Email:** (Wajib diisi agar fitur struk via email berfungsi)
+    ```env
+    MAIL_MAILER=smtp
+    MAIL_HOST=smtp.gmail.com
+    MAIL_PORT=465
+    MAIL_USERNAME="email-anda@gmail.com"
+    MAIL_PASSWORD="password-app-16-digit-dari-google"
+    MAIL_ENCRYPTION=ssl
+    MAIL_FROM_ADDRESS="email-anda@gmail.com"
+    MAIL_FROM_NAME="${APP_NAME}"
+    ```
+
+7.  **Import Database (Langkah Kunci)**
+    *Repository* ini sudah menyertakan file `.sql` berisi data. Anda tidak perlu menjalankan migrasi. Cukup impor file tersebut:
+    * Di **phpMyAdmin**, klik database **`cyber_cafe`** yang baru Anda buat.
+    * Klik tab **"Import"** di bagian atas.
+    * Klik **"Choose File" (Pilih File)** dan temukan file `.sql` yang ada di dalam folder proyek Anda (misalnya: `cyber_cafe.sql`).
+    * Scroll ke bawah dan klik **"Go"** atau **"Import"**.
+
+    Ini akan membuat semua tabel (`admin`, `menu`, `transaksi`, dll.) dan mengisi data *default* (termasuk akun admin `tes`).
+
+8.  **Jalankan Server**
+    Terakhir, jalankan server pengembangan Laravel:
+    ```bash
+    php artisan serve
+    ```
 
 ---
 
-## 🎨 RANCANGAN UI/UX DI FIGMA
-<p align="center">
-  <img height="400" alt="1" src="https://github.com/user-attachments/assets/16863889-ebc7-4dbb-ac02-4378dd891439" />
-  <img height="400" alt="2" src="https://github.com/user-attachments/assets/0224dd6c-c69a-473a-8191-314e92b25b9c" />
-  <img height="400" alt="3" src="https://github.com/user-attachments/assets/4a2cf798-f969-4002-a2c0-179be0caed58" />
-  <img height="400" alt="4" src="https://github.com/user-attachments/assets/48136acd-70fb-4aa2-8668-fc1624745b64" />
-  <img height="400" alt="5" src="https://github.com/user-attachments/assets/2d1dccad-35b4-4aa5-a04b-39808081d667" />
-  <img height="400" alt="6" src="https://github.com/user-attachments/assets/29b25359-3481-4a23-a096-c5dfdf841216" />
-  <img height="400" alt="7" src="https://github.com/user-attachments/assets/7e6043ef-682d-416a-a8c5-a163a7a70464" />
-  <img height="400" alt="8" src="https://github.com/user-attachments/assets/3723cbfb-c5ea-478f-b5b9-77e03be629ec" />
-  <img height="400" alt="9" src="https://github.com/user-attachments/assets/e8584391-61e9-46f8-8db2-ba438e97feb3" />
-  <img height="400" alt="10" src="https://github.com/user-attachments/assets/131dcfed-3c5f-4427-adae-968cd074b6b8" />
-</p>
+### 3. Mengakses Aplikasi
 
----
+Setelah server berjalan, Anda bisa mengakses aplikasi:
 
-## 🧑‍💻 Lisensi
-Proyek ini dilisensikan di bawah [MIT License](LICENSE).
+* **Halaman Pelanggan (Frontend):**
+    `http://localhost:8000`
+
+* **Halaman Login Admin (Backend):**
+    `http://localhost:8000/admin/login`
+
+* **Kredensial Login Admin:**
+    * Username: `tes`
+    * Password: `tes`
